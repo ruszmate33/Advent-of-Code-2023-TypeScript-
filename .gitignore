@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+
+# Compiled JavaScript
+dist/
+build/
+
+# Environment configuration
+.env
+
+# macOS folder attributes
+.DS_Store
+
+# Logs
+*.log
+
+# Coverage directory used by tools like Istanbul
+coverage/
+
+# Temporary files
+temp/
+tmp/
+
+# Editor directories and files
+.vscode/
+*.swp
+*.swo
+
+# TypeScript cache
+*.tsbuildinfo
