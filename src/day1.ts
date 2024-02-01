@@ -19,6 +19,7 @@ a1b2c3d4e5f
 treb7uchet`;
 
 // 54605 part1
+// 55429 part2 with `includeAlphaDigits`
 
 const testInput2 = `two1nine
 eightwothree
@@ -30,7 +31,10 @@ zoneight234
 
 const filePath = "../inputs/input1.txt";
 
-function allPossibleDigitsFromLine(line: string): string {
+function allPossibleDigitsFromLine(
+  line: string,
+  includeAlphaDigits: boolean
+): string {
   let digitsOnLine = "";
   for (let j = 0; j < line.length; j++) {
     let char = line[j];
@@ -39,13 +43,19 @@ function allPossibleDigitsFromLine(line: string): string {
       // console.log(`${line} ${parsed}`)
       digitsOnLine = digitsOnLine.concat(parsed.toString());
     }
-    for (const [index, alphaDigit] of alphabeticDigits.entries()) {
-      if (line.slice(j).startsWith(alphaDigit)) {
-        digitsOnLine = digitsOnLine.concat((index + 1).toString());
+    if (includeAlphaDigits) {
+      for (const [index, alphaDigit] of alphabeticDigits.entries()) {
+        if (line.slice(j).startsWith(alphaDigit)) {
+          digitsOnLine = digitsOnLine.concat((index + 1).toString());
+        }
       }
     }
   }
   return digitsOnLine;
+}
+
+function numberFromFirstAndLastDigit(digits: string): number {
+  return parseInt(digits.charAt(0).concat(digits.slice(-1)));
 }
 
 function main() {
@@ -54,9 +64,9 @@ function main() {
   const lines = puzzle_input.split("\n");
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
-    let digitsOnLine = allPossibleDigitsFromLine(line);
+    let digitsOnLine = allPossibleDigitsFromLine(line, false);
 
-    let num = parseInt(digitsOnLine.charAt(0).concat(digitsOnLine.slice(-1)));
+    let num = numberFromFirstAndLastDigit(digitsOnLine);
     if (!isNaN(num)) {
       numbers.push(num);
     }
