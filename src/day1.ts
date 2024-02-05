@@ -41,12 +41,13 @@ function allPossibleDigitsFromLine(
     const parsed = parseInt(char);
     if (!isNaN(parsed)) {
       // console.log(`${line} ${parsed}`)
-      digitsOnLine = digitsOnLine.concat(parsed.toString());
+      digitsOnLine += parsed.toString();
     }
     if (includeAlphaDigits) {
       for (const [index, alphaDigit] of alphabeticDigits.entries()) {
         if (line.slice(j).startsWith(alphaDigit)) {
-          digitsOnLine = digitsOnLine.concat((index + 1).toString());
+          digitsOnLine = (index + 1).toString();
+          break
         }
       }
     }
